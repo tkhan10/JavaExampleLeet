@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringExampleDemoPracticeApplication {
 
 	public static void main(String[] args) {
+		System.out.println("This is tofek khan with all my passion to finish this coding");
 		SpringApplication.run(SpringExampleDemoPracticeApplication.class, args);
 	}
 
