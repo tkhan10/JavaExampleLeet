@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.OptionalInt;
+import java.util.concurrent.atomic.AtomicReference;
 
 @SpringBootApplication
 public class SpringExampleDemoPracticeApplication {
@@ -16,7 +17,11 @@ public class SpringExampleDemoPracticeApplication {
 		SpringApplication.run(SpringExampleDemoPracticeApplication.class, args);
 		//findWordsContaining();
 		//findArray();
-		countPairs();
+		//countPairs();
+		//findMaximumNUmberOfWords();
+		//reversWordsInStringIII();
+		//reversWordsInStringIII_UsingStringBuilder();
+		checkIfStringIsAAcronymOfWords();
 	}
 
 
@@ -73,4 +78,67 @@ public class SpringExampleDemoPracticeApplication {
 		return count;
 	}
 
+	//2114. Maximum Number of Words Found in Sentences
+	public static int findMaximumNUmberOfWords() {
+		int size = 0;
+		String[] sentences = {"alice and bob love leetcode", "i think so too", "this is great thanks very much"};
+		for(int i=0; i<sentences.length;i++){
+			String[] sentenceSplit =  sentences[i].split(" ");
+			if(size<sentenceSplit.length){
+				size = sentenceSplit.length;
+			}
+		}
+		System.out.println(size);
+		return size;
+	}
+
+	public static String reversWordsInStringIII() {
+		String s = "Let's take leetcode";
+		StringBuilder finalResult = new StringBuilder("");
+		String[] sentences = s.split(" ");
+		for(int i=0; i<sentences.length;i++){
+			char[] charArray = sentences[i].toCharArray();
+			StringBuilder res = new StringBuilder("");
+			for(int j = charArray.length-1; j>=0; j--){
+				res = res.append(charArray[j]);
+			}
+			finalResult = finalResult.append(res.toString()).append(" ");
+		}
+		return finalResult.toString().trim();
+	}
+	public static String reversWordsInStringIII_UsingStringBuilder() {
+		String s = "Let's take leetcode";
+		StringBuilder finalResult = new StringBuilder("");
+		String[] sentences = s.split(" ");
+		for (int i = 0; i < sentences.length; i++) {
+			StringBuilder res = new StringBuilder(sentences[i]);
+			finalResult = finalResult.append(res.reverse()).append(" ");
+		}
+		return finalResult.toString().trim();
+	}
+
+	/**
+	 * 2828
+	 * Check if a String Is an Acronym of Words
+	 * @return
+	 */
+	public static boolean checkIfStringIsAAcronymOfWords() {
+		List<String> words = new ArrayList<>();
+		words.add("Let's"); words.add("take");words.add("leetcode"); //words.add("terst");
+		String s = "Ltl";
+		if(s.length() != words.size()){
+			return false;
+		}
+		StringBuilder res = new StringBuilder("");
+		words.stream().forEach(n->{
+			res.append(n.charAt(0));
+		});
+		System.out.println("----"+res.toString());
+		if(s.equalsIgnoreCase(res.toString())){
+			return true;
+		}else{
+			return false;
+		}
+
+	}
 }
